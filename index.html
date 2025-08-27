@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Powered Marketing Portfolio</title>
+   <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h1 class="logo">Brand<span class="accent">AI</span></h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="#tools">AI Tools</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h2>We craft <span class="accent">campaigns</span> that convert.</h2>
+    <p>Smart strategy • Stunning design • AI-driven copy</p>
+    <button onclick="location.href='case-studies.html'">View Case Studies</button>
+    <button onclick="document.getElementById('tools').scrollIntoView()">Try AI Tools</button>
+  </header>
+
+  <!-- Services -->
+  <section class="services">
+    <h2>Services</h2>
+    <div class="card-grid">
+      <div class="card">Campaign Strategy</div>
+      <div class="card">Performance Creative</div>
+      <div class="card">Content Automation</div>
+    </div>
+  </section>
+
+  <!-- AI Tools -->
+  <section id="tools">
+    <h2>AI Tools</h2>
+
+    <!-- Proposal Generator -->
+    <div class="tool">
+      <h3>AI Proposal Generator</h3>
+      <input type="text" id="proposalInput" placeholder="Enter project idea">
+      <button onclick="generateProposal()">Generate Proposal</button>
+      <div id="proposalOutput" class="output"></div>
+    </div>
+
+    <!-- Copy Generator -->
+    <div class="tool">
+      <h3>AI Marketing Copy Generator</h3>
+      <input type="text" id="copyProduct" placeholder="Product">
+      <input type="text" id="copyAudience" placeholder="Audience">
+      <input type="text" id="copyTone" placeholder="Tone (e.g. Friendly)">
+      <input type="number" id="copyWords" placeholder="Word limit">
+      <button onclick="generateCopy()">Generate Copy</button>
+      <div id="copyOutput" class="output"></div>
+    </div>
+
+    <!-- Chat Assistant -->
+    <div class="tool">
+      <h3>AI Project Chat Assistant</h3>
+      <div id="chatBox" class="chat-box"></div>
+      <input type="text" id="chatInput" placeholder="Ask about campaigns, hooks...">
+      <button onclick="sendChat()">Send</button>
+    </div>
+  </section>
+
+  <!-- Contact -->
+ <section id="contact">
+  <h2>Let’s Work Together</h2>
+  <form name="contact" method="POST" data-netlify="true">
+    <!-- Hidden input for Netlify to detect the form -->
+    <input type="hidden" name="form-name" value="contact">
+
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <!-- Thank You message (hidden by default) -->
+  <div id="thankYou" style="display:none; margin-top:1rem; color:#1f6feb;">
+    ✅ Thank you! Your message has been sent.
+  </div>
+</section>
+
+<script>
+  // Show thank-you message after submission
+  const form = document.querySelector("form[name='contact']");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    form.style.display = "none"; // hide form
+    document.getElementById("thankYou").style.display = "block"; // show message
+
+    // Actually send to Netlify
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString(),
+    }).catch((error) => alert("Error: " + error));
+  });
+</script>
+
+
+  <footer>
+    <p>© 2025 Anamika Gupta — AI Powered Marketing Portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
